@@ -1,2 +1,9 @@
-.venv/
-License Plate Recognition.v13i.yolov8/
+# Python virtual environments
+backend/number_plate_detection_training_Resources/venv/
+backend/venv/
+
+# Training resources folder
+backend/number_plate_detection_training_Resources/License Plate Recognition.v13i.yolov8/
+
+# Node modules
+frontend/node_modules/

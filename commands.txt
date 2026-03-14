@@ -1,0 +1,42 @@
+
+
+STEP 1: Open Project in VS Code
+--------------------------------
+Open the extracted folder in Visual Studio Code.
+
+
+STEP 2: Install Dependencies
+--------------------------------
+Open Terminal inside project folder and run:
+
+npm install
+
+
+STEP 3: Start Development Server
+--------------------------------
+Run:
+
+npm run dev
+
+
+STEP 4: Open in Browser
+--------------------------------
+After running the above command, you will see:
+
+Local: http://localhost:5173
+
+Open this URL in your browser.
+
+
+STEP 5: Stop Server
+--------------------------------
+Press:
+
+Ctrl + C
+
+
+STEP 6: Run Again Later
+--------------------------------
+Open project folder and run:
+
+npm run dev

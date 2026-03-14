@@ -1,0 +1,16 @@
+Software Requirements:
+
+1. Node.js (LTS version recommended – v18 or above)
+   Download from: https://nodejs.org
+
+2. npm (Comes with Node.js)
+
+
+Project Dependencies (Installed via npm):
+
+- react
+- react-dom
+- react-router-dom
+- recharts
+- vite
+- @vitejs/plugin-react
