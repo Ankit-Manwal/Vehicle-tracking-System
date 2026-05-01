@@ -9,13 +9,22 @@ import os
 import time
 
 from cameras import CAMERAS
-from detections_store import add_detection
+from detections_store import (
+    add_detection,
+    should_add_detection,
+    get_number_plates_to_detect,
+)
 
 print(torch.cuda.is_available())
 print(torch.cuda.get_device_name(0))
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DETECTED_IMAGES_DIR = os.path.join(
+    os.path.dirname(BASE_DIR),
+    "detected_vehicle_images",
+)
+os.makedirs(DETECTED_IMAGES_DIR, exist_ok=True)
 print("Base directory:", BASE_DIR)
 # ---------------------------------------------------
 # 4️⃣ Function to correct OCR mistakes
@@ -295,10 +304,23 @@ reader = easyocr.Reader(['en'], gpu=torch.cuda.is_available())
 plate_pattern = re.compile(r"^[A-Z]{2}[0-9]{2}[A-Z]{3}$")
 
 
+def save_detection_image(plate, camera_id, frame, timestamp):
+    """
+    Save a snapshot frame for a detected vehicle and return a frontend-friendly path.
+    """
+    safe_plate = re.sub(r"[^A-Z0-9]", "_", (plate or "").upper())
+    safe_camera = re.sub(r"[^A-Z0-9_-]", "_", camera_id or "unknown")
+    filename = f"{safe_plate}_{safe_camera}_{timestamp}.jpg"
+    file_path = os.path.join(DETECTED_IMAGES_DIR, filename)
+
+    ok = cv2.imwrite(file_path, frame)
+    if not ok:
+        return ""
+
+    return f"/detected-images/{filename}"
 
 
-def generate_frames(target_plate, camera_id=None):
-
+def generate_frames(target_plate, camera_id=None, should_continue=None):
         # --------------------------------------------------
     # Open input video
     # --------------------------------------------------
@@ -312,6 +334,8 @@ def generate_frames(target_plate, camera_id=None):
     # 5️⃣ MAIN LOOP
     # ==========================================================
     while cap.isOpened():
+        if should_continue and not should_continue():
+            break
 
         ret, frame = cap.read()
 
@@ -344,6 +368,8 @@ def generate_frames(target_plate, camera_id=None):
             boxes = r.boxes
 
             for box in boxes:
+                if should_continue and not should_continue():
+                    break
 
                 # conf = float(box.conf.cpu().numpy())
                 if box.id is None:
@@ -382,20 +408,21 @@ def generate_frames(target_plate, camera_id=None):
                 # Stabilization
                 # box_id = get_box_id(x1, y1, x2, y2)
                 stable_text = get_stable_plate(box_id, text)
+                active_target_plates = set(get_number_plates_to_detect())
+                should_track_plate = bool(stable_text) and stable_text in active_target_plates
+                detection_meta = None
+                detection_ts = None
 
                 # If we have a stable plate and a known camera,
                 # record this detection (order is naturally preserved)
-                if stable_text and camera_id and camera_id in CAMERAS:
-                    meta = CAMERAS[camera_id]
-                    add_detection(
-                        plate=stable_text,
-                        camera=camera_id,
-                        lat=meta["lat"],
-                        lng=meta["lng"],
-                        address=meta["address"],
-                        timestamp=int(time.time()),
-                    )
-                    print(f"Detection recorded ocr: {stable_text} at {camera_id}")
+                if (
+                    should_track_plate
+                    and camera_id
+                    and camera_id in CAMERAS
+                    and should_add_detection(stable_text, camera_id)
+                ):
+                    detection_meta = CAMERAS[camera_id]
+                    detection_ts = int(time.time())
 
                 # Draw rectangle
                 cv2.rectangle(
@@ -447,7 +474,7 @@ def generate_frames(target_plate, camera_id=None):
                         frame[oy1:oy2, ox1:ox2] = plate_resized
 
 
-                        if target_plate and stable_text == target_plate:
+                        if should_track_plate:
                             print("Target plate detected.")
                             # White text
                             cv2.putText(
@@ -468,26 +495,27 @@ def generate_frames(target_plate, camera_id=None):
                                     4                      # 7️⃣ thickness
                                 )
 
-#************************************************************************************************
-                # 🔥 STOP CONDITION
-                if target_plate and stable_text == target_plate:
-                    print("Target plate detected. Stopping stream.")
-                    
-                    # Encode and send FINAL frame
-                    ret2, buffer = cv2.imencode('.jpg', frame)
-                    if ret2:
-                        frame_bytes = buffer.tobytes()
-                        yield (
-                            b'--frame\r\n'
-                            b'Content-Type: image/jpeg\r\n\r\n' +
-                            frame_bytes +
-                            b'\r\n'
-                        )
+                if detection_meta and detection_ts:
+                    image_path = save_detection_image(
+                        plate=stable_text,
+                        camera_id=camera_id,
+                        frame=frame,
+                        timestamp=detection_ts,
+                    )
+                    was_added = add_detection(
+                        plate=stable_text,
+                        camera=camera_id,
+                        lat=detection_meta["lat"],
+                        lng=detection_meta["lng"],
+                        address=detection_meta["address"],
+                        timestamp=detection_ts,
+                        image_path=image_path,
+                    )
+                    if was_added:
+                        print(f"Detection recorded ocr: {stable_text} at {camera_id}")
 
-                    cap.release()
-                    return   # ⛔ Stop generator completely    
-#************************************************************************************************
-
+            if should_continue and not should_continue():
+                break
 
         # -------------------------------------------------
         # Convert processed OpenCV frame to JPEG

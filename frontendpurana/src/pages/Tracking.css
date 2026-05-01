@@ -1,0 +1,62 @@
+.tracking-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.left-panel {
+  width: 50%;
+  padding: 30px;
+  background: #1e293b;
+  color: white;
+}
+
+.right-panel {
+  width: 50%;
+  height: 100%;
+}
+
+.camera-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.camera-btn {
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #334155;
+  color: white;
+}
+
+.camera-btn.active {
+  background: #2563eb;
+}
+
+.video-player {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.detection-marker {
+  background: transparent;
+  border: none;
+}
+
+.detection-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+

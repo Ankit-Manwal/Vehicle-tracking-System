@@ -1,0 +1,25 @@
+{
+  "GX15OGJ": {
+    "plate": "GX15OGJ",
+    "type": "Car",
+    "owner": "Rahul Sharma"
+  },
+
+  "HR26DK8337": {
+    "plate": "HR26DK8337",
+    "type": "SUV",
+    "owner": "Amit Verma"
+  },
+
+  "UP16AB1234": {
+    "plate": "UP16AB1234",
+    "type": "Truck",
+    "owner": "Rakesh Singh"
+  },
+
+  "DL8CAF5032": {
+    "plate": "DL8CAF5032",
+    "type": "Bike",
+    "owner": "Ankit Kumar"
+  }
+}

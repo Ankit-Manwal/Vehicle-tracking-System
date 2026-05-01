@@ -3,3 +3,4 @@ ultralytics
 easyorc
 torch
 opencv-python
+flask
