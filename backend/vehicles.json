@@ -1,25 +1,193 @@
 {
   "GX15OGJ": {
     "plate": "GX15OGJ",
-    "type": "Car",
-    "owner": "Rahul Sharma"
+    "type": "Bike",
+    "owner": "Rahul Sharma",
+    "model": "Royal Enfield Classic 350",
+    "color": "Red",
+    "chassis": "MBJXD3R8A1234567",
+    "regDate": "15 Mar 2019",
+    "phone": "+91-91489 12345",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Expired 622d ago", "expired": true },
+      { "name": "Insurance", "status": "Active until 12 Dec 2026", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Triple riding", "date": "19 Oct 2025", "amount": "1000", "paid": true },
+      { "reason": "No helmet", "date": "05 Jun 2024", "amount": "500", "paid": false }
+    ]
   },
 
   "HR26DK8337": {
     "plate": "HR26DK8337",
     "type": "SUV",
-    "owner": "Amit Verma"
+    "owner": "Amit Verma",
+    "model": "Hyundai Creta SX",
+    "color": "Phantom Black",
+    "chassis": "MHYUN2CR8B7654321",
+    "regDate": "22 Sep 2020",
+    "phone": "+91-98765 43210",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Active until 30 Nov 2026", "expired": false },
+      { "name": "Insurance", "status": "Active until 15 Jan 2027", "expired": false },
+      { "name": "Registration", "status": "Active", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Rash driving", "date": "24 Aug 2025", "amount": "5000", "paid": true },
+      { "reason": "No seatbelt", "date": "17 Mar 2022", "amount": "1000", "paid": false }
+    ]
   },
 
   "UP16AB1234": {
     "plate": "UP16AB1234",
     "type": "Truck",
-    "owner": "Rakesh Singh"
+    "owner": "Rakesh Singh",
+    "model": "Tata LPT 1613",
+    "color": "Sky Blue",
+    "chassis": "MTATA3LP8C9876543",
+    "regDate": "10 Nov 2016",
+    "phone": "+91-87654 32109",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Expired 100d ago", "expired": true },
+      { "name": "Insurance", "status": "Expired 50d ago", "expired": true },
+      { "name": "National Permit", "status": "Active until 01 Aug 2026", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Overloading", "date": "12 Jan 2025", "amount": "20000", "paid": false },
+      { "reason": "No parking zone", "date": "03 Sep 2024", "amount": "500", "paid": true }
+    ]
   },
 
   "DL8CAF5032": {
     "plate": "DL8CAF5032",
+    "type": "Scooter",
+    "owner": "Ankit Kumar",
+    "model": "Honda Activa 6G",
+    "color": "Pearl White",
+    "chassis": "MHNDA4AC8D4567890",
+    "regDate": "28 Aug 2017",
+    "phone": "+91-76543 21098",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Active until 14 Oct 2026", "expired": false },
+      { "name": "Insurance", "status": "Active until 20 Dec 2026", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Triple riding", "date": "08 Jul 2025", "amount": "1000", "paid": true }
+    ]
+  },
+
+  "MH02CD5678": {
+    "plate": "MH02CD5678",
+    "type": "Car",
+    "owner": "Priya Patel",
+    "model": "Honda City ZX",
+    "color": "Silver Metallic",
+    "chassis": "MHNDA5CI8E1112223",
+    "regDate": "03 Jan 2018",
+    "phone": "+91-65432 10987",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Expired 200d ago", "expired": true },
+      { "name": "Insurance", "status": "Active until 22 Feb 2027", "expired": false }
+    ],
+    "challans": [
+      { "reason": "No seatbelt", "date": "11 Apr 2025", "amount": "1000", "paid": false },
+      { "reason": "Wrong parking", "date": "29 Dec 2024", "amount": "500", "paid": true }
+    ]
+  },
+
+  "KA03EF9012": {
+    "plate": "KA03EF9012",
+    "type": "Car",
+    "owner": "Sanjay Rao",
+    "model": "Maruti Swift Dzire",
+    "color": "Magma Grey",
+    "chassis": "MMSIL6SW8F4445556",
+    "regDate": "14 Jul 2021",
+    "phone": "+91-54321 09876",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Active until 18 Aug 2026", "expired": false },
+      { "name": "Insurance", "status": "Active until 09 May 2027", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Speeding", "date": "02 Feb 2025", "amount": "1500", "paid": true },
+      { "reason": "Red light jump", "date": "17 Jun 2025", "amount": "5000", "paid": false }
+    ]
+  },
+
+  "TN04GH3456": {
+    "plate": "TN04GH3456",
+    "type": "SUV",
+    "owner": "Karthik Subramanian",
+    "model": "Toyota Innova Crysta",
+    "color": "Bronze",
+    "chassis": "MTYT7IN8G7778889",
+    "regDate": "05 May 2015",
+    "phone": "+91-43210 98765",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Active until 30 Sep 2026", "expired": false },
+      { "name": "Insurance", "status": "Expired 300d ago", "expired": true },
+      { "name": "Fitness Certificate", "status": "Active until 11 Nov 2026", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Rash driving", "date": "21 Mar 2025", "amount": "5000", "paid": true },
+      { "reason": "Over speeding", "date": "14 Oct 2024", "amount": "2000", "paid": true }
+    ]
+  },
+
+  "UP05IJ7890": {
+    "plate": "UP05IJ7890",
     "type": "Bike",
-    "owner": "Ankit Kumar"
+    "owner": "Neha Gupta",
+    "model": "KTM Duke 390",
+    "color": "Orange",
+    "chassis": "MKTM8DK8H0001112",
+    "regDate": "19 Oct 2023",
+    "phone": "+91-32109 87654",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Active until 25 Dec 2026", "expired": false },
+      { "name": "Insurance", "status": "Active until 01 Jan 2027", "expired": false }
+    ],
+    "challans": [
+      { "reason": "No helmet", "date": "07 May 2025", "amount": "1000", "paid": false },
+      { "reason": "Triple riding", "date": "13 Aug 2025", "amount": "1000", "paid": false }
+    ]
+  },
+
+  "RJ14KL1111": {
+    "plate": "RJ14KL1111",
+    "type": "Car",
+    "owner": "Vikram Singh",
+    "model": "BMW X1 sDrive",
+    "color": "Black Sapphire",
+    "chassis": "MBMW9X18I3334445",
+    "regDate": "11 Feb 2022",
+    "phone": "+91-21098 76543",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Active until 04 Jun 2026", "expired": false },
+      { "name": "Insurance", "status": "Active until 19 Aug 2027", "expired": false }
+    ],
+    "challans": [
+      { "reason": "Speeding", "date": "30 Nov 2024", "amount": "5000", "paid": false }
+    ]
+  },
+
+  "WB20MN2222": {
+    "plate": "WB20MN2222",
+    "type": "Truck",
+    "owner": "Debashish Roy",
+    "model": "Ashok Leyland Boss",
+    "color": "Yellow",
+    "chassis": "MALB0BO8J6667778",
+    "regDate": "25 Dec 2014",
+    "phone": "+91-10987 65432",
+    "documents": [
+      { "name": "Pollution Certificate", "status": "Expired 900d ago", "expired": true },
+      { "name": "Insurance", "status": "Expired 400d ago", "expired": true },
+      { "name": "National Permit", "status": "Expired 100d ago", "expired": true }
+    ],
+    "challans": [
+      { "reason": "Overloading", "date": "09 Jan 2025", "amount": "20000", "paid": true },
+      { "reason": "Pollution violation", "date": "27 Jul 2024", "amount": "10000", "paid": false }
+    ]
   }
 }

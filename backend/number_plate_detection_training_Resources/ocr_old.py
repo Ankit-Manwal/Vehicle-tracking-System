@@ -15,25 +15,9 @@ from detections_store import (
     get_number_plates_to_detect,
 )
 
-
-
-# =====================================================
-# CUDA / CPU CHECK
-# =====================================================
-
 print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
 
-if torch.cuda.is_available():
-    print(torch.cuda.get_device_name(0))
-    DEVICE = 0
-    print("Using GPU")
-else:
-    DEVICE = "cpu"
-    print("Running on CPU")
-
-# =====================================================
-# PATHS
-# =====================================================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DETECTED_IMAGES_DIR = os.path.join(
@@ -377,7 +361,7 @@ def generate_frames(target_plate, camera_id=None, should_continue=None):
         # YOLO detection
         # results = model(frame_masked, device=0, verbose=False)  # gpu
 
-        results = model.track(frame_masked, persist=True, device=DEVICE, verbose=False)
+        results = model.track(frame, persist=True, device=0, verbose=False)
 
 
         for r in results:

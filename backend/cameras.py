@@ -19,5 +19,10 @@ CAMERAS = {
         "lng": 78.0600,
         "address": "Premnagar, Dehradun",
     },
+        "cam4": {
+        "lat": 50.3300,
+        "lng": 88.0600,
+        "address": "Premnfghjagar, Defghjhradun",
+    },
 }
 

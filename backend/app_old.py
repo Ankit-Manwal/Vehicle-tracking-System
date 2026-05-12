@@ -33,56 +33,6 @@ def load_data():
 
 
 
-# -------------------------------------------------
-# Auth Helpers
-# -------------------------------------------------
-USERS_FILE = os.path.join(BASE_DIR, "users.json")
-
-def load_users():
-    if not os.path.exists(USERS_FILE):
-        return []
-    with open(USERS_FILE, "r") as f:
-        return json.load(f)
-
-def save_users(users):
-    with open(USERS_FILE, "w") as f:
-        json.dump(users, f, indent=2)
-
-
-
-@app.route("/signup", methods=["POST"])
-def signup():
-    payload = request.get_json(silent=True) or {}
-    username = (payload.get("username") or "").strip()
-    password = (payload.get("password") or "").strip()
-
-    if not username or not password:
-        return jsonify({"success": False, "message": "Username and password are required"}), 400
-
-    users = load_users()
-    if any(u.get("username") == username for u in users):
-        return jsonify({"success": False, "message": "Username already exists"}), 409
-
-    users.append({"username": username, "password": password})
-    save_users(users)
-    return jsonify({"success": True, "message": "Account created. Please login."}), 201
-
-
-@app.route("/login", methods=["POST"])
-def login():
-    payload = request.get_json(silent=True) or {}
-    username = (payload.get("username") or "").strip()
-    password = (payload.get("password") or "").strip()
-
-    users = load_users()
-    for u in users:
-        if u.get("username") == username and u.get("password") == password:
-            return jsonify({"success": True, "message": "Login successful"}), 200
-
-    return jsonify({"success": False, "message": "Invalid username or password"}), 401
-
-
-
 @app.route("/vehicle/<plate>")
 def get_vehicle(plate):
     data = load_data()
